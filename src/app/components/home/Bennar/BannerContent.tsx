@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 import { motion } from "framer-motion";
 import BannerButton from "./BannerButton";
+import { Star } from "lucide-react";
 
 function BannerContent() {
   return (
@@ -12,16 +13,18 @@ function BannerContent() {
         transition={{ duration: 0.6 }}
         className="text-3xl md:text-5xl font-bold leading-tight"
       >
-        Learn Smarter with SkillBridge 🚀
+        Learn Smarter with{" "}
+         SkillBridge <Star />
+        
       </motion.h1>
-
       <motion.p
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.6 }}
         className="mt-4 text-base md:text-lg text-gray-100"
       >
-        SkillBridge connects students with expert tutors. Browse verified tutors, check availability, and book sessions instantly.
+        SkillBridge connects students with expert tutors. Browse verified
+        tutors, check availability, and book sessions instantly.
       </motion.p>
 
       <motion.div
@@ -37,4 +40,4 @@ function BannerContent() {
   );
 }
 
-export default BannerContent
+export default BannerContent;
