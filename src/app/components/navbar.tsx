@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { ModeToggle } from "@/components/layout/ModeToggle";
 
 interface MenuItem {
   title: string;
@@ -98,34 +99,34 @@ const Navbar1 = ({
       // ],
     },
     {
-      title: "Resources",
+      title: "Nothing",
       url: "#",
-      items: [
-        {
-          title: "Help Center",
-          description: "Get all the answers you need right here",
-          icon: <Zap className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Contact Us",
-          description: "We are here to help you with any questions you have",
-          icon: <Sunset className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Status",
-          description: "Check the current status of our services and APIs",
-          icon: <Trees className="size-5 shrink-0" />,
-          url: "#",
-        },
-        {
-          title: "Terms of Service",
-          description: "Our terms and conditions for using our services",
-          icon: <Book className="size-5 shrink-0" />,
-          url: "#",
-        },
-      ],
+      // items: [
+      //   {
+      //     title: "Help Center",
+      //     description: "Get all the answers you need right here",
+      //     icon: <Zap className="size-5 shrink-0" />,
+      //     url: "#",
+      //   },
+      //   {
+      //     title: "Contact Us",
+      //     description: "We are here to help you with any questions you have",
+      //     icon: <Sunset className="size-5 shrink-0" />,
+      //     url: "#",
+      //   },
+      //   {
+      //     title: "Status",
+      //     description: "Check the current status of our services and APIs",
+      //     icon: <Trees className="size-5 shrink-0" />,
+      //     url: "#",
+      //   },
+      //   {
+      //     title: "Terms of Service",
+      //     description: "Our terms and conditions for using our services",
+      //     icon: <Book className="size-5 shrink-0" />,
+      //     url: "#",
+      //   },
+      // ],
     },
     {
       title: "Pricing",
@@ -137,8 +138,8 @@ const Navbar1 = ({
     },
   ],
   auth = {
-    login: { title: "Login", url: "#" },
-    signup: { title: "Sign up", url: "#" },
+    login: { title: "Login", url: "/login" },
+    signup: { title: "Sign up", url: "/signup" },
   },
   className,
 }: Navbar1Props) => {
@@ -168,6 +169,7 @@ const Navbar1 = ({
             </div>
           </div>
           <div className="flex gap-2">
+            <ModeToggle/>
             <Button asChild variant="outline" size="sm">
               <Link href={auth.login.url}>{auth.login.title}</Link>
             </Button>
@@ -216,6 +218,7 @@ const Navbar1 = ({
                   </Accordion>
 
                   <div className="flex flex-col gap-3">
+                    <ModeToggle/>
                     <Button asChild variant="outline">
                       <Link href={auth.login.url}>{auth.login.title}</Link>
                     </Button>
