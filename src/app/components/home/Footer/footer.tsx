@@ -1,12 +1,9 @@
-"use client"
-
+"use client";
 import FooterSection from "./FooterSection";
 import FooterLink from "./FooterLink";
-
 import FooterContact from "./FooterContact";
 import FooterBrand from "./FooterBrand";
 import FooterBottom from "./Footer-Bottom";
-
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -25,7 +22,6 @@ export default function Footer() {
         </FooterSection>
         <FooterContact />
       </div>
-
       {/* Footer Bottom */}
       <FooterBottom />
     </footer>

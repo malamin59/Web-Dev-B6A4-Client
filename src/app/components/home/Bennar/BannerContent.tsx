@@ -13,8 +13,8 @@ function BannerContent() {
         transition={{ duration: 0.6 }}
         className="text-3xl md:text-5xl font-bold leading-tight"
       >
-        Learn Smarter with{" "}
-         SkillBridge <Star />
+       <p className="f"> Learn Smarter with{" "}
+         SkillBridge  <span> <Star /></span></p>
         
       </motion.h1>
       <motion.p
