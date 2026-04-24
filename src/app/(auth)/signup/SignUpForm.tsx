@@ -1,56 +1,45 @@
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Link from "next/link";
+import { handleSubmit } from "./handleSubmit";
+import SocialLogin from "../SocialLogin/socialLogin";
 export default function SignUpForm() {
   return (
     <div>
       {" "}
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="flex flex-col gap-6">
-          {/* Name Filed */}
+          {/* Name */}
           <div className="grid gap-2">
             <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              type="name"
-              placeholder="enter your name"
-              required
-            />
+            <Input id="name" name="name" type="text" required />
           </div>
-          {/* Phone Filed */}
+
+          {/* Phone */}
           <div className="grid gap-2">
             <Label htmlFor="phone">Phone</Label>
-            <Input
-              id="phone"
-              type="number"
-              placeholder="+008xxxxxxx"
-              required
-            />
+            <Input id="phone" name="phone" type="text" required />
           </div>
-          {/* Email Filed */}
+
+          {/* Email */}
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="m@example.com"
-              required
-            />
+            <Input id="email" name="email" type="email" required />
           </div>
-          {/* PassWord Filed */}
+
+          {/* Password */}
           <div className="grid gap-2">
-            <div className="flex items-center">
-              <Label htmlFor="password">Password</Label>
-            </div>
-            <Input id="password" type="password" required />
-            <Link
-              href="#"
-              className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-            >
-              Forgot your password?
-            </Link>
+            <Label htmlFor="password">Password</Label>
+            <Input id="password" name="password" type="password" required />
           </div>
+
+          {/* SignUp Button */}
+          <Button type="submit" className="w-full">
+            Login
+          </Button>
         </div>
+        {/* Social Login */}
+        <SocialLogin />
       </form>
     </div>
   );

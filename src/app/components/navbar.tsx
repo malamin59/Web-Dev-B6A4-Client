@@ -99,8 +99,8 @@ const Navbar1 = ({
       // ],
     },
     {
-      title: "Nothing",
-      url: "#",
+      title: "Contact",
+      url: "/contact",
       // items: [
       //   {
       //     title: "Help Center",
@@ -129,8 +129,8 @@ const Navbar1 = ({
       // ],
     },
     {
-      title: "Pricing",
-      url: "#",
+      title: "Dashboard",
+      url: "/dashboard",
     },
     {
       title: "Blog",
