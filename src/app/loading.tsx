@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import LoadingPage from "./sections/LoadingPage";
+import LoadingLayout from "./(commonLayout)/layout/loadingLayout";
 
 export default function GlobalLoading() {
   return (
@@ -12,7 +12,7 @@ export default function GlobalLoading() {
       transition={{ duration: 0.3 }}
       className="fixed inset-0 z-50 flex items-center justify-center bg-white/90 backdrop-blur-sm dark:bg-gray-900/90"
     >
-      <LoadingPage/>
+      <LoadingLayout/>
     </motion.div>
   );
 }
