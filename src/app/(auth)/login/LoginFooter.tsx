@@ -1,7 +1,7 @@
 import { CardFooter } from "@/components/ui/card";
 import Link from "next/link";
 
-export default function LoginFooter() {
+export default function   LoginFooter() {
   return (
     <div>
       <CardFooter className="flex flex-col gap-3">
