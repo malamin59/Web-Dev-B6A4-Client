@@ -34,7 +34,7 @@ export default function SignUpForm() {
           </div>
 
           {/* SignUp Button */}
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full mb-2">
             Login
           </Button>
         </div>
