@@ -5,19 +5,30 @@ export const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   console.log("data from handle Submit Page", data);
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", 
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/users`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       },
-      body : JSON.stringify(data)
-    });
+    );
 
-    const result = await res.json();
-    console.log(result)
-    alert("user create successfully!")
-  } catch (error) {
-    console.error(error)
-    alert("something went wrong")
+    const text = await res.text();
+    let result;
+    try {
+      result = JSON.parse(text);
+    } catch {
+      console.error("Non-JSON response:", text);
+      throw new Error("Server error (not JSON)");
+    }
+    console.log(result);
+    alert("user create successfully!");
+
+  } catch (error: any) {
+    console.error(error);
+    alert(error.message || "something went wrong");
   }
 };
