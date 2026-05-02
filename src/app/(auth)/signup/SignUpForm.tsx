@@ -3,11 +3,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { handleSubmit } from "./handleSubmit";
 import SocialLogin from "../SocialLogin/socialLogin";
+import { useLoginRouter } from "@/hooks/login.router";
 export default function SignUpForm() {
+
+  const router = useLoginRouter()
+
   return (
     <div>
       {" "}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e, router)}>
         <div className="flex flex-col gap-6">
           {/* Name */}
           <div className="grid gap-2">

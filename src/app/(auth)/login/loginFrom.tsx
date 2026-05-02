@@ -1,15 +1,17 @@
-"use client"
+"use client";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import SocialLogin from "../SocialLogin/socialLogin";
 import { handleSubmit } from "./handleSubmit";
+import { useLoginRouter } from "@/hooks/login.router";
 
 export default function LoginFrom() {
+  const router = useLoginRouter();
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e, router)}>
         <div className="flex flex-col gap-6">
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>

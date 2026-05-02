@@ -1,7 +1,10 @@
 "use client";
 import { signIn } from "next-auth/react";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import toast from "react-hot-toast";
 export const handleSubmit = async (
-  e: React.FormEvent<HTMLFormElement>
+  e: React.FormEvent<HTMLFormElement>,
+  router: AppRouterInstance,
 ) => {
   e.preventDefault();
   const fromData = new FormData(e.currentTarget);
@@ -16,7 +19,8 @@ export const handleSubmit = async (
     if (res?.error) {
       alert(res.error);
     } else {
-      alert("Login successful");
+      toast('login Successfully')
+      router.push("/");
     }
   } catch (error) {
     console.error(error);

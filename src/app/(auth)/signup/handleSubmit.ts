@@ -1,4 +1,8 @@
-export const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+import toast from "react-hot-toast";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
+
+export const handleSubmit = async (e: React.FormEvent<HTMLFormElement> , router : AppRouterInstance) => {
   e.preventDefault();
   const fromData = new FormData(e.currentTarget);
   const data = Object.fromEntries(fromData);
@@ -24,8 +28,11 @@ export const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       console.error("Non-JSON response:", text);
       throw new Error("Server error (not JSON)");
     }
-    console.log(result);
-    alert("user create successfully!");
+   
+    toast.success("resister Successfully")
+    router.push('/')
+
+    
 
   } catch (error: any) {
     console.error(error);
