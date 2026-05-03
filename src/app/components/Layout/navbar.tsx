@@ -27,6 +27,9 @@ import {
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ModeToggle } from "@/components/layout/ModeToggle";
+import Image from "next/image";
+
+import LoginButton from "./LoginButton";
 
 interface MenuItem {
   title: string;
@@ -70,27 +73,23 @@ const Navbar1 = ({
     {
       title: "About",
       url: "/about",
-      
+    },
+    {
+      title: "Profile",
+      url: "/Profile",
     },
     {
       title: "Dashboard",
       url: "/dashboard",
     },
-    {
-      title: "Blog",
-      url: "#",
-    },
   ],
-  auth = {
-    login: { title: "Login", url: "/login" },
-    signup: { title: "Sign up", url: "/signup" },
-  },
   className,
 }: Navbar1Props) => {
   return (
     <section className={cn("py-4", className)}>
       <div className="container">
         {/* Desktop Menu */}
+
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-6">
             {/* Logo */}
@@ -113,13 +112,8 @@ const Navbar1 = ({
             </div>
           </div>
           <div className="flex gap-2">
-            <ModeToggle/>
-            <Button asChild variant="outline" size="sm">
-              <Link href={auth.login.url}>{auth.login.title}</Link>
-            </Button>
-            <Button asChild size="sm">
-              <Link href={auth.signup.url}>{auth.signup.title}</Link>
-            </Button>
+            <ModeToggle />
+            <LoginButton />
           </div>
         </nav>
 
@@ -128,7 +122,9 @@ const Navbar1 = ({
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href={logo.url} className="flex items-center gap-2">
-              <img
+              <Image
+                width={32}
+                height={32}
                 src={logo.src}
                 className="max-h-8 dark:invert"
                 alt={logo.alt}
@@ -144,7 +140,9 @@ const Navbar1 = ({
                 <SheetHeader>
                   <SheetTitle>
                     <Link href={logo.url} className="flex items-center gap-2">
-                      <img
+                      <Image
+                        width={32}
+                        height={32}
                         src={logo.src}
                         className="max-h-8 dark:invert"
                         alt={logo.alt}
@@ -162,13 +160,8 @@ const Navbar1 = ({
                   </Accordion>
 
                   <div className="flex flex-col gap-3">
-                    <ModeToggle/>
-                    <Button asChild variant="outline">
-                      <Link href={auth.login.url}>{auth.login.title}</Link>
-                    </Button>
-                    <Button asChild>
-                      <Link href={auth.signup.url}>{auth.signup.title}</Link>
-                    </Button>
+                    <ModeToggle />
+                    <LoginButton />
                   </div>
                 </div>
               </SheetContent>

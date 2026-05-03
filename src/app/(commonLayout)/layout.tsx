@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar1 } from "../components/navbar";
+import { Navbar1 } from "../components/Layout/navbar";
 
 export default function CommonLayout({
   children,
