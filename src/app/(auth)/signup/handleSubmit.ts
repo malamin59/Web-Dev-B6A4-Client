@@ -48,8 +48,13 @@ export const handleSubmit = async (
     }
     toast.success("resister Successfully");
     router.push("/");
-  } catch (error: any) {
+  } catch (error: unknown) {
+  if (error instanceof Error) {
     console.error(error);
-    alert(error.message || "something went wrong");
+    toast.error("Register Failed");
+  } else {
+    console.error(error);
+    alert("Something went wrong");
   }
+}
 };

@@ -38,7 +38,7 @@ export const authOptions: NextAuthOptions = {
         );
         const data = await res.json();
         if (!res.ok) {
-         return null
+          return null;
         }
         return {
           id: data.data.user.id,
@@ -46,39 +46,76 @@ export const authOptions: NextAuthOptions = {
           name: data.data.user.name,
           role: data.data.user.role,
           phone: data.data.user.phone,
-            accessToken: data.data.accessToken,
+          accessToken: data.data.accessToken,
         };
-        
-      },      
+      },
     }),
-
   ],
 
   callbacks: {
-    async jwt({ token, account, user }) {
-      if (account) {
-        token.provider = account.provider;
-      }
-      if (!token.provider) {
-        token.provider = "credentials";
-      }
-      if (user) {
-        token.id = user.id;
-        token.email = user.email;
-        token.name = user.name;
-        token.role = user.role;
-        token.phone = user.phone;
-        token.accessToken =  user.accessToken
-      }
-      return token;
-    },
+  async jwt({ token, account, user }) {
+
+  // set provider
+  if (account) {
+    token.provider = account.provider;
+  }
+
+  if (!token.provider) {
+    token.provider = "credentials";
+  }
+
+  // ✅ SOCIAL LOGIN
+  if (account && account.provider !== "credentials") {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/social-login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: user?.name,
+            email: user?.email,
+            provider: account.provider,
+          }),
+        }
+      );
+
+      const data = await res.json();
+
+     
+      token.id = data.data.user.id;
+      token.role = data.data.user.role;
+      token.accessToken = data.data.accessToken;
+      token.name = data.data.user.name;
+      token.email = data.data.user.email;
+
+    } catch (error) {
+      console.error("Social login error:", error);
+    }
+  }
+  
+  if (user && account?.provider === "credentials") {
+    token.id = user.id;
+    token.email = user.email;
+    token.name = user.name;
+    token.role = user.role;
+    token.phone = user.phone;
+    token.accessToken = user.accessToken;
+  }
+
+  return token;
+},
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id;
         session.user.provider = token.provider;
         session.user.name = token.name;
+        session.user.email = token.email;
         session.user.role = token.role as string;
         session.user.phone = token.phone as string;
+        session.user.accessToken = token.accessToken as string
       }
       return session;
     },
