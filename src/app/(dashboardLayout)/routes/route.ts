@@ -1,9 +1,11 @@
 import { adminRoutes } from "./adminRoutes";
+import { tutorRoutes } from "./tutorsRoute";
 import { userRoutes } from "./userRoutes";
 
-// create a variable
-export const userInfo = {
-  role: "admin",
-};
+export type Role = 'ADMIN' | 'STUDENT' | 'TUTOR';
 
-export const routes = userInfo.role === "admin" ? adminRoutes : userRoutes;
+export const routeMap: Record<Role, any> = {
+  ADMIN: adminRoutes,
+  STUDENT: userRoutes,
+  TUTOR: tutorRoutes,
+};

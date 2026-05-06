@@ -14,16 +14,26 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { userInfo } from "./routes/route";
-
+import { useSession } from "next-auth/react";
 
 export default function Dashboard({
   admin,
   user,
+  tutors,
 }: {
   admin: React.ReactNode;
   user: React.ReactNode;
+  tutors: React.ReactNode;
 }) {
+  const session = useSession();
+  const userData = session.data?.user.role;
+
+  const roleComponentMap: Record<string, React.ReactNode> = {
+    ADMIN: admin,
+    TUTOR: tutors,
+    USER: user,
+  };
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -46,10 +56,9 @@ export default function Dashboard({
             </BreadcrumbList>
           </Breadcrumb>
         </header>
-        {/* {children} */}
 
         {/* Check user role  */}
-        {userInfo.role === "admin" ? admin : user}
+        {roleComponentMap[userData as string] || user}
       </SidebarInset>
     </SidebarProvider>
   );

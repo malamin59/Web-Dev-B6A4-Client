@@ -3,7 +3,7 @@ import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 
 export default function Profile() {
-  const { data: session } = useSession();
+     const { data: session } = useSession();
   if (!session) return <p>Not logged in</p>;
 console.log(session)
   const user = session.user as any;

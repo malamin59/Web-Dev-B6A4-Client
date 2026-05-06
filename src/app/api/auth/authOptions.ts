@@ -53,60 +53,60 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-  async jwt({ token, account, user }) {
+async jwt({ token, account, user }) {
 
-  // set provider
   if (account) {
     token.provider = account.provider;
-  }
 
-  if (!token.provider) {
-    token.provider = "credentials";
-  }
+    // SOCIAL LOGIN
+    if (account.provider !== "credentials") {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/social-login`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: user?.name,
+              email: user?.email,
+              provider: account.provider, 
+            }),
+          }
+        );
 
-  // ✅ SOCIAL LOGIN
-  if (account && account.provider !== "credentials") {
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/social-login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: user?.name,
-            email: user?.email,
-            provider: account.provider,
-          }),
-        }
-      );
+        const data = await res.json();
+        console.log("Social login API response:", JSON.stringify(data));
 
-      const data = await res.json();
+        token.id = data.data.user.id;
+        token.role = data.data.user.role; // ✅ DB থেকে role নাও
+        token.accessToken = data.data.accessToken;
+        token.name = data.data.user.name;
+        token.email = data.data.user.email;
 
-     
-      token.id = data.data.user.id;
-      token.role = data.data.user.role;
-      token.accessToken = data.data.accessToken;
-      token.name = data.data.user.name;
-      token.email = data.data.user.email;
+      } catch (error) {
+        console.error("Social login error:", error);
+      }
+    }
 
-    } catch (error) {
-      console.error("Social login error:", error);
+    // CREDENTIALS LOGIN
+    if (account.provider === "credentials" && user) {
+      token.id = user.id;
+      token.email = user.email;
+      token.name = user.name;
+      token.role = user.role;
+      token.phone = user.phone;
+      token.accessToken = user.accessToken;
     }
   }
-  
-  if (user && account?.provider === "credentials") {
-    token.id = user.id;
-    token.email = user.email;
-    token.name = user.name;
-    token.role = user.role;
-    token.phone = user.phone;
-    token.accessToken = user.accessToken;
-  }
 
-  return token;
+  return token; 
 },
+
+
+
+
+
+
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id;

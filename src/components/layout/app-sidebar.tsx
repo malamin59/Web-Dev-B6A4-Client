@@ -1,5 +1,5 @@
-import * as React from "react"
-import { VersionSwitcher } from "@/components/layout/version-switcher"
+import * as React from "react";
+import { VersionSwitcher } from "@/components/layout/version-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -11,15 +11,20 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import Link from "next/link"
-import { routes } from "@/app/(dashboardLayout)/routes/route"
+} from "@/components/ui/sidebar";
+import Link from "next/link";
+import { routeMap, Role } from "@/app/(dashboardLayout)/routes/route";
+import { useUserRole } from "@/hooks/userRole";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { role, isLoading } = useUserRole();
+  if (isLoading) return <p>Loading...</p>;
+
+  const routes = routeMap[role as Role] ?? routeMap.STUDENT;
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <VersionSwitcher/>
+        <VersionSwitcher />
         {/* <SearchForm /> */}
       </SidebarHeader>
       <SidebarContent>
@@ -42,5 +47,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
