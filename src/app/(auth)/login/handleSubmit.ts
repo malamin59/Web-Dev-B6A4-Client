@@ -10,7 +10,7 @@ export const handleSubmit = async (
   const fromData = new FormData(e.currentTarget);
   try {
     const data = Object.fromEntries(fromData);
-    console.log("data from login Submit Page", data);
+    // console.log("data from login Submit Page", data);
     const res = await signIn("credentials", {
       email: fromData.get("email"),
       password: fromData.get("password"),

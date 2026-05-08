@@ -11,7 +11,7 @@ export default function TutorForm() {
   const [hourlyRate, setHourlyRate] = useState("");
 
   const { id } = useUserRole();
-  console.log("user id -->>", id);
+  // console.log("user id -->>", id);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -7,6 +7,6 @@ const axiosInstance = axios.create({
   },
 });
 
-console.log(process.env.NEXT_PUBLIC_BASEURL)
+// console.log(process.env.NEXT_PUBLIC_BASEURL)
 
 export default axiosInstance;

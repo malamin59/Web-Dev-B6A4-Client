@@ -6,7 +6,7 @@
     export default function TutorProfile() {
          const { data: session } = useSession();
       if (!session) return <p>Not logged in</p>;
-    console.log(session)
+    // console.log(session)
       const user = session.user
       const initials = user.name
         ?.split(" ")

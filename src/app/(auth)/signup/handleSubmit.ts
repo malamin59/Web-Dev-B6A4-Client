@@ -9,7 +9,7 @@ export const handleSubmit = async (
   e.preventDefault();
   const fromData = new FormData(e.currentTarget);
   const data = Object.fromEntries(fromData);
-  console.log("data from handle Submit Page", data);
+  // console.log("data from handle Submit Page", data);
 
   try {
     const res = await fetch(
@@ -24,7 +24,7 @@ export const handleSubmit = async (
     );
 
     const result = await res.json();
-    console.log(result);
+    // console.log(result);
     if (!res.ok) {
       toast.error(result.message || "Register failed");
       return;
