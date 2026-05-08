@@ -13,7 +13,7 @@ export default function LoginButton() {
     if (status === "loading") {
     return <p className="text-sm">Loading...</p>;
   }
-  console.log("data from login button 16 number line",session)
+  console.log("data from login button  16 number line",session)
 
   // {session ? () : ()}
   return (

@@ -1,35 +1,20 @@
- export const userRoutes = {
+export const userRoutes = {
   navMain: [
     {
       title: "you are user",
       url: "#",
       items: [
         {
-          title: "Write-Block",
+          title: "Bookings",
           url: "#",
         },
-        {
-          title: "Add Products",
-          url: "#",
-        },
-        {
-          title: "BookMark",
-          url: "#",
-        },
-        {
-          title: "total class",
-          url: "#",
-        },
+
         {
           title: "Profile",
-          url: "#",
+          url: "/dashboard/Profile",
         },
-        {
-          title: "Setting",
-          url: "#",
-        },
+        ,
       ],
     },
-   
   ],
-}
+};

@@ -9,8 +9,12 @@
           url: "#",
         },
         {
-          title: "profile",
-          url: "#",
+          title: "Create Profile",
+          url: "/dashboard/tutors/",
+        },
+        {
+          title: "Profile",
+          url: "/dashboard/Profile",
         },
       ],
     },

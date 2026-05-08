@@ -5,20 +5,20 @@ export const adminRoutes = {
       url: "#",
       items: [
         {
-          title: "add Products",
-          url: "#",
-        },
-        {
-          title: "add User",
-          url: "#",
-        },
-        {
           title: "manage user",
           url: "#",
         },
         {
-          title: "Profile",
+          title: "bookings",
           url: "#",
+        },
+        {
+          title: "categories",
+          url: "#",
+        },
+        {
+          title: "Profile",
+          url: "/dashboard/Profile",
         },
         {
           title: "setting",

@@ -75,8 +75,8 @@ const Navbar1 = ({
       url: "/about",
     },
     {
-      title: "Profile",
-      url: "/Profile",
+      title: "Tutors",
+      url: "/tutors",
     },
     {
       title: "Dashboard",

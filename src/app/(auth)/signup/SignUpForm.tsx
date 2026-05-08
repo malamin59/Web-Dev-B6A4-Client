@@ -37,6 +37,22 @@ export default function SignUpForm() {
             <Input id="password" name="password" type="password" required />
           </div>
 
+            {/* Role */}
+          <div className="grid gap-2">
+            <Label htmlFor="role">Role</Label>
+
+            <select
+              id="role"
+              name="role"
+              required
+              className="border rounded-md h-10 px-3 bg-background"
+            >
+              <option value="">Select Role</option>
+              <option value="student">Student</option>
+              <option value="tutor">Tutor</option>
+            </select>
+          </div>
+
           {/* SignUp Button */}
           <Button type="submit" className="w-full mb-2">
             Login

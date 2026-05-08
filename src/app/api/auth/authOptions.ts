@@ -53,7 +53,7 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-async jwt({ token, account, user }) {
+ async jwt({ token, account, user }) {
 
   if (account) {
     token.provider = account.provider;
@@ -75,10 +75,10 @@ async jwt({ token, account, user }) {
         );
 
         const data = await res.json();
-        console.log("Social login API response:", JSON.stringify(data));
+        // console.log("Social login API response:", JSON.stringify(data));
 
         token.id = data.data.user.id;
-        token.role = data.data.user.role; // ✅ DB থেকে role নাও
+        token.role = data.data.user.role; 
         token.accessToken = data.data.accessToken;
         token.name = data.data.user.name;
         token.email = data.data.user.email;
@@ -113,7 +113,7 @@ async jwt({ token, account, user }) {
         session.user.provider = token.provider;
         session.user.name = token.name;
         session.user.email = token.email;
-        session.user.role = token.role as string;
+        session.user.role = token.role;
         session.user.phone = token.phone as string;
         session.user.accessToken = token.accessToken as string
       }
