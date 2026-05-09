@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/Providers/theme-providers";
 import Providers from "@/Providers/providers";
 import { Toaster } from "react-hot-toast";
+import TanstackProvider from "@/Providers/TanstackProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,15 +35,17 @@ export default function RootLayout({
     >
       <body className={`${inter.className} min-h-full flex flex-col`}>
         <Providers>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Toaster position="top-right" />
-            {children}
-          </ThemeProvider>
+          <TanstackProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Toaster position="top-right" />
+              {children}
+            </ThemeProvider>
+          </TanstackProvider>
         </Providers>
       </body>
     </html>

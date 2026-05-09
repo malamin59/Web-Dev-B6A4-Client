@@ -6,7 +6,7 @@ export const userRoutes = {
       items: [
         {
           title: "Bookings",
-          url: "#",
+          url: "/dashboard/bookings",
         },
 
         {
