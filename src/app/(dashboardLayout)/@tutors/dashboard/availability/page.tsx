@@ -32,9 +32,12 @@ export default function AvailabilityPage() {
     }
   }, [id]);
 
-  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!day || !startTime || !endTime) {
+      toast.error("all field id required");
+      return
+    }
 
     try {
       await axiosInstance.post("/tutor/availability", {
@@ -64,7 +67,7 @@ export default function AvailabilityPage() {
           <h1 className="text-3xl font-bold mb-6">Add Availability</h1>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            <Select onValueChange={setDay} value={day}>
+            <Select required onValueChange={setDay} value={day}>
               <Day />
             </Select>
 

@@ -1,5 +1,5 @@
 import axiosInstance from "@/app/service/axios";
-import { Button } from "@/components/ui/button";
+import BookSessionButton from "@/app/service/BookSessionButton";
 
 async function getTutor(id: string) {
   const res = await axiosInstance.get(`/tutor/${id}`);
@@ -14,7 +14,7 @@ export default async function TutorDetailsPage({
   const { id } = await params;
 
   const tutor = await getTutor(id);
-  console.log("Tutor data here -- >", tutor);
+  // console.log("Tutor data here -- >", tutor);
 
   return (
     <div className="max-w-4xl mx-auto py-10">
@@ -49,10 +49,7 @@ export default async function TutorDetailsPage({
             ))}
           </div>
         </div>
-
-        <Button className="mt-8 bg-black text-white px-6 py-3 rounded-xl">
-          Book Session
-        </Button>
+        <BookSessionButton tutorId={tutor.id} />
       </div>
     </div>
   );
