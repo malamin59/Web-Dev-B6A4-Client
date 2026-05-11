@@ -12,31 +12,24 @@ export default function BookingLayout({ booking }: any) {
       transition
       "
     >
-      <div
-        className="
-        grid
-        grid-cols-1
-        md:grid-cols-2
-        lg:grid-cols-5
-        gap-5
-        "
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2"
       >
         <div>
           <p className="text-sm text-gray-500">Tutor Name</p>
 
-          <h2 className="text-2xl font-bold">{booking.tutor.user.name}</h2>
+          <h2 className="text-2xl font-bold">{booking?.tutor?.user?.name}</h2>
         </div>
 
         <div>
           <p className="text-sm text-gray-500">Expertise</p>
 
-          <p className="font-medium">{booking.tutor.expertise}</p>
+          <p className="font-medium">{booking?.tutor?.expertise}</p>
         </div>
 
         <div>
           <p className="text-sm text-gray-500">Hourly Rate</p>
 
-          <p className="font-medium">${booking.tutor.hourlyRate}</p>
+          <p className="font-medium">${booking?.tutor?.hourlyRate}</p>
         </div>
 
         <div>
@@ -48,7 +41,7 @@ export default function BookingLayout({ booking }: any) {
             text-green-600
             "
           >
-            {booking.status}
+            {booking?.status}
           </p>
         </div>
 
@@ -56,7 +49,7 @@ export default function BookingLayout({ booking }: any) {
           <p className="text-sm text-gray-500">Booking Date</p>
 
           <p className="font-medium">
-            {new Date(booking.date).toLocaleDateString()}
+            {new Date(booking?.date).toLocaleDateString()}
           </p>
         </div>
       </div>

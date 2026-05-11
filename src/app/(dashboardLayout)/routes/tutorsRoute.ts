@@ -12,6 +12,10 @@ export const tutorRoutes = {
           title: "availability",
           url: "/dashboard/availability",
         },
+        {
+          title: "tutor-bookings",
+          url: "/dashboard/tutor-bookings",
+        },
 
         {
           title: "Profile",

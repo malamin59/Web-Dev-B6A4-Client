@@ -36,10 +36,19 @@ export const authOptions: NextAuthOptions = {
             }),
           },
         );
+
+        // // ✅ JSON কিনা আগে চেক করো
+        // const contentType = res.headers.get("content-type");
+        // if (!contentType?.includes("application/json")) {
+        //   throw new Error("Server error: invalid response");
+        // }
+        // console.log(contentType)
+
         const data = await res.json();
         if (!res.ok) {
           return null;
         }
+
         return {
           id: data.data.user.id,
           email: data.data.user.email,
@@ -53,59 +62,52 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
- async jwt({ token, account, user }) {
+    async jwt({ token, account, user }) {
+      if (account) {
+        token.provider = account.provider;
 
-  if (account) {
-    token.provider = account.provider;
+        // SOCIAL LOGIN
+        if (account.provider !== "credentials") {
+          try {
+            const res = await fetch(
+              `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/social-login`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  name: user?.name,
+                  email: user?.email,
+                  provider: account.provider,
+                }),
+              },
+            );
 
-    // SOCIAL LOGIN
-    if (account.provider !== "credentials") {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/social-login`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name: user?.name,
-              email: user?.email,
-              provider: account.provider, 
-            }),
+            const data = await res.json();
+            // console.log("Social login API response:", JSON.stringify(data));
+
+            token.id = data.data.user.id;
+            token.role = data.data.user.role;
+            token.accessToken = data.data.accessToken;
+            token.name = data.data.user.name;
+            token.email = data.data.user.email;
+          } catch (error) {
+            console.error("Social login error:", error);
           }
-        );
+        }
 
-        const data = await res.json();
-        // console.log("Social login API response:", JSON.stringify(data));
-
-        token.id = data.data.user.id;
-        token.role = data.data.user.role; 
-        token.accessToken = data.data.accessToken;
-        token.name = data.data.user.name;
-        token.email = data.data.user.email;
-
-      } catch (error) {
-        console.error("Social login error:", error);
+        // CREDENTIALS LOGIN
+        if (account.provider === "credentials" && user) {
+          token.id = user.id;
+          token.email = user.email;
+          token.name = user.name;
+          token.role = user.role;
+          token.phone = user.phone;
+          token.accessToken = user.accessToken;
+        }
       }
-    }
 
-    // CREDENTIALS LOGIN
-    if (account.provider === "credentials" && user) {
-      token.id = user.id;
-      token.email = user.email;
-      token.name = user.name;
-      token.role = user.role;
-      token.phone = user.phone;
-      token.accessToken = user.accessToken;
-    }
-  }
-
-  return token; 
-},
-
-
-
-
-
+      return token;
+    },
 
     async session({ session, token }) {
       if (session.user) {
@@ -115,7 +117,7 @@ export const authOptions: NextAuthOptions = {
         session.user.email = token.email;
         session.user.role = token.role;
         session.user.phone = token.phone as string;
-        session.user.accessToken = token.accessToken as string
+        session.user.accessToken = token.accessToken as string;
       }
       return session;
     },
