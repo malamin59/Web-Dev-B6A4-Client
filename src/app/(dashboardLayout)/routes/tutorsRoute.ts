@@ -16,6 +16,10 @@ export const tutorRoutes = {
           title: "tutor-bookings",
           url: "/dashboard/tutor-bookings",
         },
+        {
+          title: "received-reviews",
+          url: "/dashboard/received-reviews",
+        },
 
         {
           title: "Profile",

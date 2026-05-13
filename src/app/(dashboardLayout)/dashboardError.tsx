@@ -6,7 +6,7 @@ export default function DashboardError({
   text?: string;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center py-20">
+    <div className="flex justify-center items-center min-h-screen">
       <AlertTriangle className="h-14 w-14 text-red-500" />
 
       <h2 className="mt-4 text-2xl font-semibold text-red-600">Oops!</h2>

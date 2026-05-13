@@ -37,8 +37,8 @@ export default function BookingPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-8">My Bookings</h1>
+    <div className="max-w-4xl mx-auto lg:py-10 md:py-6 py-6">
+      <h1 className="text-3xl font-bold mb-8 text-center">My Bookings</h1>
 
       <div className="space-y-5">
         {bookings?.map((booking: any) => (

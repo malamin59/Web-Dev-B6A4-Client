@@ -30,8 +30,8 @@ export default function MyReviewsPage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-6">My Reviews</h1>
+    <div className="max-w-6xl mx-auto lg:py-10 md:py-6 py-4" >
+      <h1 className="text-3xl font-bold mb-6 text-center">My Reviews</h1>
 
       <DataTable columns={columns} data={data || []} />
     </div>
