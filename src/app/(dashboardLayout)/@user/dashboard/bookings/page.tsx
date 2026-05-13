@@ -3,6 +3,9 @@ import axiosInstance from "@/app/service/axios";
 import { useUserRole } from "@/hooks/userRole";
 import { useQuery } from "@tanstack/react-query";
 import BookingLayout from "./BookingLayout";
+import DashboardError from "@/app/(dashboardLayout)/dashboardError";
+import EmptyPage from "@/app/(dashboardLayout)/EmptyPage";
+import LoadingPage from "../loading";
 
 export default function BookingPage() {
   const { id } = useUserRole();
@@ -15,16 +18,22 @@ export default function BookingPage() {
     queryKey: ["student-booking", id],
     queryFn: async () => {
       const res = await axiosInstance.get(`/bookings/student/${id}`);
+
+      console.log(res.data);
       return res.data.data;
     },
     enabled: !!id,
   });
 
   if (isLoading) {
-    return <p className="text-center">loading..........</p>;
+    return <LoadingPage />;
   }
   if (error) {
-    return <p>Error.............</p>;
+    return <DashboardError />;
+  }
+
+  if (!bookings || bookings.length === 0) {
+    return <EmptyPage />;
   }
 
   return (

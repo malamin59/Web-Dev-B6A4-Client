@@ -8,6 +8,10 @@ export const userRoutes = {
           title: "Bookings",
           url: "/dashboard/bookings",
         },
+        {
+          title: "MY Reviews",
+          url: "/dashboard/my-reviews",
+        },
 
         {
           title: "Profile",
