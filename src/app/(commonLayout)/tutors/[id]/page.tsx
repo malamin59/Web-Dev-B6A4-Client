@@ -1,6 +1,8 @@
 import axiosInstance from "@/app/service/axios";
 import BookSessionButton from "@/app/service/BookSessionButton";
 import ReviewSection from "./ReviewSection";
+import TutorData from "./TutorData";
+import TutorAvailability from "./TutorAvailability";
 
 async function getTutor(id: string) {
   const res = await axiosInstance.get(`/tutor/${id}`);
@@ -15,52 +17,22 @@ export default async function TutorDetailsPage({
   const { id } = await params;
 
   const tutor = await getTutor(id);
-      // console.log("Tutor data here -- >", tutor);
+  // console.log("Tutor data here -- >", tutor);
 
   return (
-    <div className="max-w-4xl mx-auto py-10">
-      <div className="border rounded-2xl p-8">
-        <h1 className="text-4xl font-bold">{tutor.user.name}</h1>
-
-        <p className="mt-4 text-gray-500">{tutor.bio}</p>
-
-        <div className="mt-6 space-y-3">
-          <p>
-            <span className="font-semibold">Expertise:</span> {tutor.expertise}
-          </p>
-
-          <p>
-            <span className="font-semibold">Hourly Rate:</span> $
-            {tutor.hourlyRate}
-          </p>
-        </div>
-
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Availability</h2>
-
-          <div className="space-y-2">
-            {tutor.availability.map((slot: any) => (
-              <div key={slot.id} className="border rounded-lg p-3">
-                <p>{slot.day}</p>
-
-                <p>
-                  {slot.startTime} - {slot.endTime}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <BookSessionButton tutorId={tutor.id} />
-        <div className="mt-10 border-t pt-6">
-          <h2 className="text-2xl font-bold mb-4">Reviews</h2>
-
-          <ReviewSection reviewedUserId={tutor.user.id} />
-
-          <div className="mt-6 space-y-4">
-            <p className="text-gray-500">No reviews yet</p>
-          </div>
-        </div>
-      </div>
+   // TutorDetailsPage.tsx  (layout only)
+<div className="max-w-3xl mx-auto py-8 px-4">
+  <div className="border border-border/40 rounded-2xl shadow-sm overflow-hidden">
+    <TutorData tutor={tutor} />
+    <TutorAvailability tutor={tutor} />
+    <div className="p-6 md:p-8">
+      <BookSessionButton tutorId={tutor.id} />
     </div>
+    <div className="border-t border-border/30 px-6 md:px-8 py-6">
+      <h2 className="text-xl font-medium mb-4">Reviews</h2>
+      <ReviewSection reviewedUserId={tutor.user.id} />
+    </div>
+  </div>
+</div>
   );
 }

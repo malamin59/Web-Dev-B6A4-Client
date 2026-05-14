@@ -1,4 +1,5 @@
 "use client"
+import LoadingPage from "@/app/(dashboardLayout)/@user/dashboard/loading";
 import axiosInstance from "@/app/service/axios";
 import { useUserRole } from "@/hooks/userRole";
 import { useQuery } from "@tanstack/react-query";
@@ -7,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 export default function ReceivedReviews() {
   const { id } = useUserRole();
 
-  const { data: reviews } = useQuery({
+  const { data: reviews  , isLoading} = useQuery({
     queryKey: ["tutor-received-reviews", id],
     queryFn: async () => {
       const res = await axiosInstance.get(`/reviews/received/${id}`);
@@ -16,8 +17,13 @@ export default function ReceivedReviews() {
     enabled: !!id,
   });
 
+  if(isLoading) {
+    <LoadingPage/>
+  }
+  
   return (
     <div>
+      <h1 className="text-center text-2xl py-2">Receive Review</h1>
       {reviews?.map((r: any) => (
         <div key={r.id} className="border p-4 rounded-xl">
           <h2 className="font-bold">{r.reviewer.name}</h2>
