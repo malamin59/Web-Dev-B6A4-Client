@@ -20,19 +20,19 @@ export default async function TutorDetailsPage({
   // console.log("Tutor data here -- >", tutor);
 
   return (
-   // TutorDetailsPage.tsx  (layout only)
-<div className="max-w-3xl mx-auto py-8 px-4">
-  <div className="border border-border/40 rounded-2xl shadow-sm overflow-hidden">
-    <TutorData tutor={tutor} />
-    <TutorAvailability tutor={tutor} />
-    <div className="p-6 md:p-8">
-      <BookSessionButton tutorId={tutor.id} />
+    // TutorDetailsPage.tsx  (layout only)
+    <div className="max-w-3xl mx-auto py-8 px-4">
+      <div className="border border-border/40 rounded-2xl shadow-sm overflow-hidden">
+        <TutorData tutor={tutor} />
+        <TutorAvailability tutor={tutor} />
+        <div className="p-6 md:p-8">
+          <BookSessionButton tutorId={tutor.id} />
+        </div>
+        <div className="border-t border-border/30 px-6 md:px-8 py-6">
+          <h2 className="text-xl font-medium mb-4">Reviews</h2>
+          <ReviewSection reviewedUserId={tutor.user.id} />
+        </div>
+      </div>
     </div>
-    <div className="border-t border-border/30 px-6 md:px-8 py-6">
-      <h2 className="text-xl font-medium mb-4">Reviews</h2>
-      <ReviewSection reviewedUserId={tutor.user.id} />
-    </div>
-  </div>
-</div>
   );
 }

@@ -1,13 +1,11 @@
 import Link from "next/link";
 
-type FooterLinkProps = {
-  href: string;
-  label: string;
-};
-
-export default function FooterLink({ href, label }: FooterLinkProps) {
+export default function FooterLink({ href, label }: { href: string; label: string }) {
   return (
-    <Link href={href} className="block hover:text-white transition">
+    <Link
+      href={href}
+      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+    >
       {label}
     </Link>
   );

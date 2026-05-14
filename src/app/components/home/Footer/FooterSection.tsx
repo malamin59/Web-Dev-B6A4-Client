@@ -1,13 +1,16 @@
-type FooterSectionProps = {
+export default function FooterSection({
+  title,
+  children,
+}: {
   title: string;
   children: React.ReactNode;
-};
-
-export default function FooterSection({ title, children }: FooterSectionProps) {
+}) {
   return (
     <div>
-      <h3 className="text-lg font-semibold text-white">{title}</h3>
-      <div className="mt-4 text-sm space-y-2">{children}</div>
+      <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/60 mb-3">
+        {title}
+      </p>
+      <div className="flex flex-col gap-2.5">{children}</div>
     </div>
   );
 }

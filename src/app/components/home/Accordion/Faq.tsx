@@ -5,49 +5,50 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+const faqs = [
+  {
+    value: "what-is-skillbridge",
+    question: "What is SkillBridge?",
+    answer:
+      "SkillBridge is a platform that connects learners with expert tutors. Students can browse tutor profiles, view availability, and book sessions instantly.",
+  },
+  {
+    value: "how-book-session",
+    question: "How do I book a tutoring session?",
+    answer:
+      "Browse available tutors, check their schedules, and book a session instantly based on real-time availability — no back-and-forth needed.",
+  },
+  {
+    value: "tutor-management",
+    question: "How do tutors manage their profiles?",
+    answer:
+      "Tutors can create and update their profiles, set availability, and manage upcoming sessions through their personal dashboard.",
+  },
+  {
+    value: "admin-role",
+    question: "What can admins do on SkillBridge?",
+    answer:
+      "Admins oversee the entire platform, manage students and tutors, and ensure smooth operation of the system.",
+  },
+];
+
 export default function Faq() {
   return (
     <Accordion type="single" collapsible className="w-full space-y-2">
-      <AccordionItem value="what-is-skillbridge" className="border-white/20">
-        <AccordionTrigger className="text-left text-white hover:no-underline">
-          What is SkillBridge?
-        </AccordionTrigger>
-        <AccordionContent className="text-white/80">
-          SkillBridge is a full-stack web application that connects learners
-          with expert tutors. Students can browse tutor profiles, view
-          availability, and book sessions instantly.
-        </AccordionContent>
-      </AccordionItem>
-
-      <AccordionItem value="how-book-session" className="border-white/20">
-        <AccordionTrigger className="text-left text-white hover:no-underline">
-          How do I book a tutoring session?
-        </AccordionTrigger>
-        <AccordionContent className="text-white/80">
-          Students can browse available tutors, check their schedules, and book
-          a session instantly based on real-time availability.
-        </AccordionContent>
-      </AccordionItem>
-
-      <AccordionItem value="tutor-management" className="border-white/20">
-        <AccordionTrigger className="text-left text-white hover:no-underline">
-          How do tutors manage their profiles?
-        </AccordionTrigger>
-        <AccordionContent className="text-white/80">
-          Tutors can create and update their profiles, set their availability,
-          and manage upcoming teaching sessions through their dashboard.
-        </AccordionContent>
-      </AccordionItem>
-
-      <AccordionItem value="admin-role" className="border-white/20">
-        <AccordionTrigger className="text-left text-white hover:no-underline">
-          What can admins do on SkillBridge?
-        </AccordionTrigger>
-        <AccordionContent className="text-white/80">
-          Admins oversee the entire platform, manage users (students and
-          tutors), and ensure smooth operation of the system.
-        </AccordionContent>
-      </AccordionItem>
+      {faqs.map(({ value, question, answer }) => (
+        <AccordionItem
+          key={value}
+          value={value}
+          className="border border-border/40 rounded-xl px-2 hover:border-border/70 transition-colors"
+        >
+          <AccordionTrigger className="text-sm font-medium text-foreground hover:no-underline py-4">
+            {question}
+          </AccordionTrigger>
+          <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-4">
+            {answer}
+          </AccordionContent>
+        </AccordionItem>
+      ))}
     </Accordion>
   );
 }
