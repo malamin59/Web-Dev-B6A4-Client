@@ -9,8 +9,7 @@ import { cn } from "@/lib/utils";
 
 export default function BookSessionButton({ tutorId }: { tutorId: string }) {
   const queryClient = useQueryClient();
-  const { id, isAuthenticated } = useUserRole();
-
+  const { id, isAuthenticated, role } = useUserRole();
   const bookingMutation = useMutation({
     mutationFn: async () => {
       return await axiosInstance.post("/bookings", {
@@ -19,6 +18,7 @@ export default function BookSessionButton({ tutorId }: { tutorId: string }) {
         date: new Date(),
       });
     },
+
     onSuccess: () => {
       toast.success("Booking created successfully");
       queryClient.invalidateQueries({ queryKey: ["student-booking"] });
@@ -34,6 +34,10 @@ export default function BookSessionButton({ tutorId }: { tutorId: string }) {
       toast.error("Please login first");
       return;
     }
+    if (role === "TUTOR") {
+      toast.error(`Tutor Can't book session`);
+      return;
+    }
     bookingMutation.mutate();
   };
 
@@ -43,29 +47,32 @@ export default function BookSessionButton({ tutorId }: { tutorId: string }) {
   return (
     <button
       onClick={handleBooking}
-      disabled={isPending || isSuccess}
-     className={cn(
-  // base
-  "w-full flex items-center justify-center border cursor-pointer gap-2.5",
-  "px-5 py-3.5 rounded-xl text-[15px] font-medium",
-  "transition-all duration-150 active:scale-[0.98]",
+      disabled={isPending || isSuccess} 
+      className={cn(
+        // base
+        "w-full flex items-center justify-center border cursor-pointer gap-2.5",
+        "px-5 py-3.5 rounded-xl text-[15px] font-medium",
+        "transition-all duration-150 active:scale-[0.98]",
 
-  // default — solid black
-  !isPending && !isSuccess && isAuthenticated &&
-    "bg-black text-white hover:bg-black/85",
+        // default — solid black
+        !isPending &&
+          !isSuccess &&
+          isAuthenticated &&
+          "bg-black text-white hover:bg-black/85",
 
-  // not logged in — outlined
-  !isAuthenticated && !isPending && !isSuccess &&
-    "bg-transparent border border-border text-foreground hover:bg-muted/50",
+        // not logged in — outlined
+        !isAuthenticated &&
+          !isPending &&
+          !isSuccess &&
+          "bg-transparent border border-border text-foreground hover:bg-muted/50",
 
-  // loading — black dimmed
-  isPending &&
-    "bg-black text-white opacity-60 cursor-not-allowed",
+        // loading — black dimmed
+        isPending && "bg-black text-white opacity-60 cursor-not-allowed",
 
-  // success — green
-  isSuccess &&
-    "bg-green-50 text-green-900 border border-green-200 cursor-default"
-)}
+        // success — green
+        isSuccess &&
+          "bg-green-50 text-green-900 border border-green-200 cursor-default",
+      )}
     >
       {isPending ? (
         <>

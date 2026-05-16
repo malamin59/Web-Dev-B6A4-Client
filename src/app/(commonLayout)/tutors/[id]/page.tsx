@@ -16,7 +16,7 @@ export default async function TutorDetailsPage({
 }) {
   const { id } = await params;
 
-  const tutor = await getTutor(id);
+   const tutor = await getTutor(id);
   // console.log("Tutor data here -- >", tutor);
 
   return (

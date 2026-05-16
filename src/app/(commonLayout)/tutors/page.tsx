@@ -9,7 +9,7 @@ async function getTutors() {
 
 export default async function TutorsPage() {
   const tutors = await getTutors();
-
+console.log(tutors[4])
   return (
     <div className="max-w-7xl mx-auto px-4 lg:py-10 py-6">
       <h1 className="text-2xl font-medium text-foreground mb-6">

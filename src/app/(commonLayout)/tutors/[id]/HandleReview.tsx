@@ -31,7 +31,7 @@ export default function HandleReview({
   const reviewMutation = useMutation({
     mutationFn: async (data: any) => {
       const res = await axiosInstance.post("/reviews", data);
-      return res.data;
+           return res.data;
     },
     onSuccess: () => {
       toast.success("Review submitted successfully");
@@ -39,9 +39,16 @@ export default function HandleReview({
       setRating(5);
       queryClient.invalidateQueries({ queryKey: ["reviews"] });
     },
-    onError: () => {
-      toast.error("Failed to submit review");
-    },
+      onError: (error: any) => {
+    // console.log("ERROR =>", error);
+    console.log("MESSAGE =>", error?.response?.data?.message);
+
+    const message =
+      error?.response?.data?.message ||
+      "Something went wrong";
+
+    toast.error(error?.response?.data?.message);
+  },
   });
 
   const handleSubmit = () => {

@@ -20,6 +20,10 @@ export const tutorRoutes = {
           title: "received-reviews",
           url: "/dashboard/received-reviews",
         },
+        {
+          title: "Update Profile",
+          url: "/dashboard/update-profile",
+        },
 
         {
           title: "Profile",
