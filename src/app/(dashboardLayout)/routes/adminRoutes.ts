@@ -5,12 +5,12 @@ export const adminRoutes = {
       url: "#",
       items: [
         {
-          title: "manage user",
-          url: "#",
+          title: "Manage user",
+          url: "/dashboard/manageUsers",
         },
         {
-          title: "bookings",
-          url: "#",
+          title: "Bookings",
+          url: "/dashboard/bookings",
         },
         {
           title: "categories",
@@ -26,6 +26,5 @@ export const adminRoutes = {
         },
       ],
     },
-   
   ],
-}
+};

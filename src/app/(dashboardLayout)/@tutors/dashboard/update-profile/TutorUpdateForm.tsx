@@ -1,25 +1,26 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import axiosInstance from "@/app/service/axios";
 import { useUserRole } from "@/hooks/userRole";
 import toast from "react-hot-toast";
+import TutorFormFields from "./TutorFormFields";
+import UpdateButton from "./UpdateButton";
+
 export default function TutorUpdateForm() {
   const [bio, setBio] = useState("");
   const [expertise, setExpertise] = useState("");
   const [hourlyRate, setHourlyRate] = useState("");
   const { id } = useUserRole();
-  const { data: tutor } = useQuery({
+
+  const { data: tutor, isLoading } = useQuery({
     queryKey: ["tutor-profile"],
     queryFn: async () => {
       const res = await axiosInstance.get(`/tutor/my-profile/${id}`);
-      console.log("result is here --->>", res?.data?.data);
       return res.data.data;
     },
   });
+
   useEffect(() => {
     if (tutor) {
       setBio(tutor.bio || "");
@@ -28,60 +29,59 @@ export default function TutorUpdateForm() {
     }
   }, [tutor]);
 
+  const updateMutation = useMutation({
+    mutationFn: async () => {
+      return await axiosInstance.patch(`/tutor/updateProfile/${tutor.id}`, {
+        bio: bio || tutor?.bio,
+        expertise: expertise || tutor?.expertise,
+        hourlyRate: Number(hourlyRate || tutor?.hourlyRate),
+      });
+    },
+    onSuccess: () => {
+      toast.success("Tutor profile updated successfully");
+      // setTimeout(() => updateMutation.reset(), 2000);
+    },
+    onError: () => {
+      toast.error("Failed to update profile");
+    },
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+  const isPending = updateMutation.isPending;
+  const isSuccess = updateMutation.isSuccess;
+  const isError = updateMutation.isError;
 
-  try {
-    await axiosInstance.patch(`/tutor/updateProfile/${tutor.id}`, {
-      bio: bio || tutor?.bio,
-      expertise: expertise || tutor?.expertise,
-      hourlyRate: Number(hourlyRate || tutor?.hourlyRate),
-    });
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const hasChanges =
+      bio !== (tutor?.bio || "") ||
+      expertise !== (tutor?.expertise || "") ||
+      hourlyRate !== String(tutor?.hourlyRate || "");
 
-    toast.success("Tutor profile updated successfully");
-  } catch (error) {
-    console.log(error);
-    toast.error("Failed to update profile");
-  }
-};
+    if (!hasChanges) {
+      toast("No changes to save", { icon: "💡" });
+      return;
+    }
+    updateMutation.mutate();
+  };
 
   return (
-      <div>
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Bio</label>
-            <Textarea
-              placeholder="Write your bio..."
-              // value={bio}
-              value={bio || tutor?.bio || ""}
-              onChange={(e) => setBio(e.target.value)}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Expertise</label>
-            <Input
-              type="text"
-              placeholder="Math, English..."
-              value={expertise || tutor?.expertise || ""}
-              onChange={(e) => setExpertise(e.target.value)}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Hourly Rate</label>
-            <Input
-              type="number"
-              placeholder="20"
-              value={hourlyRate || tutor?.hourlyRate || ""}
-              onChange={(e) => setHourlyRate(e.target.value)}
-            />
-          </div>
-          <Button  type="submit" className="w-full">
-            Update Profile
-          </Button>
-        </form>
-      </div>
+    <div>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <TutorFormFields
+          bio={bio}
+          expertise={expertise}
+          hourlyRate={hourlyRate}
+          tutor={tutor}
+          setBio={setBio}
+          setExpertise={setExpertise}
+          setHourlyRate={setHourlyRate}
+        />
+        <UpdateButton
+          isPending={isPending}
+          isError={isError}
+          isSuccess={isSuccess}
+        />
+      </form>
+    </div>
   );
 }
