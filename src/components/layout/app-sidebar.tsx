@@ -13,7 +13,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
-import { routeMap, Role } from "@/app/(dashboardLayout)/routes/route";
+import { routeMap, Role } from "@/app/(dashboardLayout)/routes/routeMap";
 import { useUserRole } from "@/hooks/userRole";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -28,12 +28,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {/* <SearchForm /> */}
       </SidebarHeader>
       <SidebarContent>
-        {routes.navMain.map((item) => (
+        {routes.navMain.map((item : any) => (
           <SidebarGroup key={item.title}>
             <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {item.items.map((item) => (
+                {item.items.map((item: any) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild>
                       <Link href={item.url}>{item.title}</Link>
