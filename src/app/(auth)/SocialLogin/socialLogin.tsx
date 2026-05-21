@@ -7,7 +7,7 @@ export default function SocialLogin() {
   return (
     <div className="space-y-2">
       {/* Google Login */}
-      <GoogleLogin />
+      {/* <GoogleLogin /> */}
       {/* GitHub Login */}
       <GithubLogin />
     </div>

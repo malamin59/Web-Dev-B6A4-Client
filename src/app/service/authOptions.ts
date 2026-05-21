@@ -4,6 +4,9 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
+  session :{
+    strategy :"jwt"
+  },
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID!,
@@ -36,13 +39,6 @@ export const authOptions: NextAuthOptions = {
             }),
           },
         );
-
-        // // ✅ JSON কিনা আগে চেক করো
-        // const contentType = res.headers.get("content-type");
-        // if (!contentType?.includes("application/json")) {
-        //   throw new Error("Server error: invalid response");
-        // }
-        // console.log(contentType)
 
         const data = await res.json();
         if (!res.ok) {
