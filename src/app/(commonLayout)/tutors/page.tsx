@@ -1,3 +1,4 @@
+
 import axiosInstance from "@/app/service/axios";
 import { BookOpen, Coins, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -11,8 +12,8 @@ export default async function TutorsPage() {
   const tutors = await getTutors();
 // console.log(tutors[4])
   return (
-    <div className="max-w-7xl mx-auto px-4 lg:py-10 py-6">
-      <h1 className="text-2xl font-medium text-foreground mb-6">
+    <div className="max-w-7xl  mx-auto px-4 lg:py-10 py-6">
+      <h1 className="text-2xl text-center text-blue-700 font-medium  mb-6">
         Browse tutors
       </h1>
 
