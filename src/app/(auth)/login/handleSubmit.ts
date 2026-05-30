@@ -14,16 +14,17 @@ export const handleSubmit = async (
     const res = await signIn("credentials", {
       email: fromData.get("email"),
       password: fromData.get("password"),
-      redirect: false,
+      redirect: true,
+      callbackUrl : "/dashboard"
     });
     if (res?.error) {
       alert(res.error);
     } else {
-      toast('login Successfully')
-      router.push("/");
+      toast.success('login Successfully')
+      // router.push("/");
     }
   } catch (error) {
     console.error(error);
-    alert("Something went wrong");
+    toast.error("Something went wrong");
   }
 };

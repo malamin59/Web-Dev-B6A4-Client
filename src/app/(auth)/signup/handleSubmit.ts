@@ -40,14 +40,15 @@ export const handleSubmit = async (
     const loginInRes = await signIn("credentials", {
       email,
       password,
-      redirect: false,
+      redirect: true,
+      callbackUrl: "/dashboard"
     });
 
     if (loginInRes?.error) {
       toast.error("Auto login Failed");
     }
     toast.success("resister Successfully");
-    router.push("/");
+    // router.push("/");
   } catch (error: unknown) {
   if (error instanceof Error) {
     console.error(error);
