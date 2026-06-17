@@ -1,1 +1,3 @@
 https://github.com/Apollo-Level2-Web-Dev/B6A4/blob/main/1-SkillBridge.md
+
+https://console.cloud.google.com/auth/clients/275178445847-906vtp8mre3b31euou4tr8m5to1gmndc.apps.googleusercontent.com?project=skill-bridge-app-494508

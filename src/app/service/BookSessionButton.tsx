@@ -6,8 +6,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CalendarPlus, Lock, CheckCircle, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 export default function BookSessionButton({ tutorId }: { tutorId: string }) {
+  const router = useRouter()
   const queryClient = useQueryClient();
   const { id, isAuthenticated, role } = useUserRole();
   const bookingMutation = useMutation({
@@ -34,11 +36,13 @@ export default function BookSessionButton({ tutorId }: { tutorId: string }) {
       toast.error("Please login first");
       return;
     }
+
     if (role === "TUTOR") {
-      toast.error(`Tutor Can't book session`);
+      toast.error("Tutor can't book session");
       return;
     }
-    bookingMutation.mutate();
+
+    router.push(`/checkout/${tutorId}`);
   };
 
   const isPending = bookingMutation.isPending;

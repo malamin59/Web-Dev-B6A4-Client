@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@stripe/react-stripe-js':
+        specifier: ^6.6.0
+        version: 6.6.0(@stripe/stripe-js@9.8.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@stripe/stripe-js':
+        specifier: ^9.8.0
+        version: 9.8.0
       '@tanstack/react-query':
         specifier: ^5.100.9
         version: 5.100.9(react@19.2.4)
@@ -59,6 +65,9 @@ importers:
       shadcn:
         specifier: ^4.3.0
         version: 4.3.1(@types/node@20.19.39)(typescript@5.9.3)
+      stripe:
+        specifier: ^22.2.1
+        version: 22.2.1(@types/node@20.19.39)
       tailwind-merge:
         specifier: ^3.5.0
         version: 3.5.0
@@ -1329,6 +1338,17 @@ packages:
   '@sindresorhus/merge-streams@4.0.0':
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
+
+  '@stripe/react-stripe-js@6.6.0':
+    resolution: {integrity: sha512-utODPiu2/JGjCnh5BX1M1F2uyjCwDKum4Bo8CeWdTCNOlzM0980YadzBMe7YoIwjfu3uadX4PMe3L2SderejqA==}
+    peerDependencies:
+      '@stripe/stripe-js': '>=9.5.0 <10.0.0'
+      react: '>=16.8.0 <20.0.0'
+      react-dom: '>=16.8.0 <20.0.0'
+
+  '@stripe/stripe-js@9.8.0':
+    resolution: {integrity: sha512-DHJpol/98VKyojNSYmpkB5vOMnlf87hPe0wPxyaYTNiTMk5QjKMXDfSZLwGctYIXAgAWDFeRABc8lFAj0BELyw==}
+    engines: {node: '>=12.16'}
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
@@ -3601,6 +3621,15 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
+  stripe@22.2.1:
+    resolution: {integrity: sha512-ULAtq25USBEx3yeN5zimEkfYVFETVMP5om25Ryr8ol11P62imaCZLBIEW78T7zm7Wg3wnZi+80S72yf3LCpNhw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@types/node': '>=18'
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+
   styled-jsx@5.1.6:
     resolution: {integrity: sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA==}
     engines: {node: '>= 12.0.0'}
@@ -5196,6 +5225,15 @@ snapshots:
   '@sec-ant/readable-stream@0.4.1': {}
 
   '@sindresorhus/merge-streams@4.0.0': {}
+
+  '@stripe/react-stripe-js@6.6.0(@stripe/stripe-js@9.8.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+    dependencies:
+      '@stripe/stripe-js': 9.8.0
+      prop-types: 15.8.1
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
+
+  '@stripe/stripe-js@9.8.0': {}
 
   '@swc/helpers@0.5.15':
     dependencies:
@@ -7717,6 +7755,10 @@ snapshots:
   strip-final-newline@4.0.0: {}
 
   strip-json-comments@3.1.1: {}
+
+  stripe@22.2.1(@types/node@20.19.39):
+    optionalDependencies:
+      '@types/node': 20.19.39
 
   styled-jsx@5.1.6(@babel/core@7.29.0)(react@19.2.4):
     dependencies:

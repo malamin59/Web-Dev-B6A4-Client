@@ -21,13 +21,13 @@ export default function MyReviewsPage() {
     },
     enabled: !!id,
   });
+  if (!data || data.length === 0) {
+    return <EmptyPage />;
+  }
 
   if (isLoading) return <DashboardLoading />;
   if (isError) return <DashboardError />;
 
-  if (!data || data.length === 0) {
-    return <EmptyPage />;
-  }
 
   return (
     <div className="max-w-6xl mx-auto lg:py-10 md:py-6 py-4" >

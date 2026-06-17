@@ -4,13 +4,13 @@ A full-stack online tutoring platform that connects students with tutors for per
 
 ## 🚀 Live Demo
 
-* **Frontend:** [Add Frontend URL]
-* **Backend API:** [Add Backend URL]
+* **Frontend:** [skillbridge-celint.vercel.app]
+* **Backend API:** [https://server-ashen-mu-96.vercel.app]
 
 ## 📂 GitHub Repositories
 
-* **Client:** [Add Client Repository URL]
-* **Server:** [Add Server Repository URL]
+* **Client:** [https://github.com/malamin59/Web-Dev-B6A4-Client]
+* **Server:** [https://github.com/malamin59/Web-Dev-B6A4-Server]
 
 ---
 

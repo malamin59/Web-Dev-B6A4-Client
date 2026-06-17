@@ -3,6 +3,7 @@ import { Mail, Phone, Calendar, User } from "lucide-react";
 import axiosInstance from "@/app/service/axios";
 import { useUserRole } from "@/hooks/userRole";
 import { useQuery } from "@tanstack/react-query";
+import EmptyPage from "@/app/(dashboardLayout)/EmptyPage";
 
 export default function TutorBookingsPage() {
   const { id } = useUserRole();
@@ -16,7 +17,10 @@ export default function TutorBookingsPage() {
 
     enabled: !!id,
   });
-  console.log(bookings);
+  console.log("data is here", bookings);
+  if ( !bookings ||  bookings.length === 0) {
+    return <EmptyPage />;
+  }
 
   return (
     <div className="max-w-6xl mx-auto py-10">

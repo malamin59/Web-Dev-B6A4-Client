@@ -10,7 +10,7 @@ export default function EmptyPage({
       <Inbox className="h-14 w-14 text-gray-400" />
 
       <h2 className="mt-4 text-2xl font-semibold text-gray-700">
-        Nothing Here
+        No data found
       </h2>
 
       <p className="mt-2 text-gray-500 text-center">

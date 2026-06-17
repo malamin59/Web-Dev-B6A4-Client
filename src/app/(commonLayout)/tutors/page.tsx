@@ -1,4 +1,4 @@
-
+import EmptyPage from "@/app/(dashboardLayout)/EmptyPage";
 import axiosInstance from "@/app/service/axios";
 import { BookOpen, Coins, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -10,7 +10,11 @@ async function getTutors() {
 
 export default async function TutorsPage() {
   const tutors = await getTutors();
-// console.log(tutors[4])
+  console.log(tutors)
+  if (tutors.length === 0) {
+    return <EmptyPage />;
+  }
+
   return (
     <div className="max-w-7xl  mx-auto px-4 lg:py-10 py-6">
       <h1 className="text-2xl text-center text-blue-700 font-medium  mb-6">

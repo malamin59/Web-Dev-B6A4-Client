@@ -28,13 +28,13 @@ export default function BookingPage() {
   if (isLoading) {
     return <LoadingPage />;
   }
+  if (!bookings || bookings.length === 0) {
+    return <EmptyPage />;
+  }
   if (error) {
     return <DashboardError />;
   }
 
-  if (!bookings || bookings.length === 0) {
-    return <EmptyPage />;
-  }
 
   return (
     <div className="max-w-4xl mx-auto lg:py-10 md:py-6 py-6">
