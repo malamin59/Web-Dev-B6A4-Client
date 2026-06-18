@@ -103,52 +103,69 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form
+   <div className="min-h-screen flex justify-center items-center  ">
+     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto mt-10 p-6 border border-gray-200 rounded-xl shadow-md space-y-5 bg-white"
+      className="max-w-md  mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-100 space-y-6"
     >
-      <h2 className="text-2xl font-bold text-center text-gray-900">
-        Complete Payment
-      </h2>
+      <div className="text-center ">
+        <h2 className="text-3xl font-bold text-gray-900">Complete Payment</h2>
+        <p className="text-sm text-gray-500 mt-2">
+          Secure payment powered by Stripe
+        </p>
+      </div>
 
-      <div className="border border-gray-300 rounded-lg p-4 focus-within:ring-2 focus-within:ring-black transition">
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#1f2937",
-                fontFamily: "Arial, sans-serif",
-                "::placeholder": {
-                  color: "#9ca3af",
+      <div className="space-y-2">
+        <label className="block text-sm font-medium text-gray-700">
+          Card Details
+        </label>
+
+        <div className="border border-gray-300 rounded-xl p-4 bg-gray-50 focus-within:border-black focus-within:ring-2 focus-within:ring-black/10 transition-all">
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  fontSize: "16px",
+                  color: "#111827",
+                  fontFamily: "Inter, sans-serif",
+                  "::placeholder": {
+                    color: "#9CA3AF",
+                  },
+                },
+                invalid: {
+                  color: "#EF4444",
                 },
               },
-              invalid: {
-                color: "#ef4444",
-              },
-            },
-          }}
-        />
+            }}
+          />
+        </div>
       </div>
 
       {errorMessage && (
-        <p className="text-sm text-red-500 -mt-2">{errorMessage}</p>
+        <div className="bg-red-50 border border-red-200 text-red-600 text-sm p-3 rounded-lg">
+          {errorMessage}
+        </div>
       )}
 
       <button
         type="submit"
         disabled={!stripe || !clientSecret || isProcessing}
-        className="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center justify-center gap-2"
+        className="w-full h-12 bg-black text-white rounded-xl font-medium hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2"
       >
         {isProcessing ? (
           <>
-            <span className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-            Processing...
+            <span className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            Processing Payment...
           </>
         ) : (
-          "Pay Now"
+          "Pay Securely"
         )}
       </button>
+
+      <p className="text-center text-xs text-gray-400">
+        Your payment information is encrypted and secure.
+      </p>
     </form>
+   </div>
   );
 }

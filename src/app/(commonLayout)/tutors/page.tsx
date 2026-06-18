@@ -1,3 +1,4 @@
+
 import EmptyPage from "@/app/(dashboardLayout)/EmptyPage";
 import axiosInstance from "@/app/service/axios";
 import { BookOpen, Coins, ArrowRight } from "lucide-react";
