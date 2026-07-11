@@ -5,7 +5,7 @@ import Faq from "./Faq";
 export function AccordionPage() {
   return (
     <section className="w-full">
-      <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 py-6">
         <AccordionHeader />
         <div className="max-w-2xl mx-auto">
           <Faq />
