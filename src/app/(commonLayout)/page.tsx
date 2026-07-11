@@ -8,7 +8,8 @@ export default function Home() {
   return (
     <div>
       {" "}
-      <Banner /> <SkillsPage />
+      <Banner />
+      <SkillsPage />
       <AccordionPage />
       <Footer />
     </div>

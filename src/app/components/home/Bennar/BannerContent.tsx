@@ -29,10 +29,12 @@ export default function BannerContent() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-3xl md:text-[2.6rem] font-medium leading-tight text-foreground"
+        className="leading-tight text-foreground lg:text-6xl md:text-4xl text-3xl font-bold"
       >
         Learn smarter with{" "}
-        <span className="text-blue-600">SkillBridge</span>
+        <span className="text-blue-600 lg:text-6xl md:text-4xl text-4xl">
+          SkillBridge
+        </span>
       </motion.h1>
 
       {/* Subtext */}
@@ -42,8 +44,8 @@ export default function BannerContent() {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed max-w-sm"
       >
-        Connect with expert tutors, check their availability, and book
-        sessions instantly — all in one place.
+        Connect with expert tutors, check their availability, and book sessions
+        instantly — all in one place.
       </motion.p>
 
       {/* Buttons */}
@@ -53,11 +55,11 @@ export default function BannerContent() {
         transition={{ duration: 0.5, delay: 0.3 }}
         className="mt-6 flex flex-col sm:flex-row gap-3"
       >
-        <Link href={'/tutors'}>
-        <BannerButton variant="primary">
-          <Search size={15} />
-          Find a tutor
-        </BannerButton>
+        <Link href={"/tutors"}>
+          <BannerButton variant="primary">
+            <Search size={15} />
+            Find a tutor
+          </BannerButton>
         </Link>
         <BannerButton variant="secondary">
           <School size={15} />
@@ -75,7 +77,9 @@ export default function BannerContent() {
         {stats.map((s) => (
           <div key={s.label}>
             <p className="text-lg font-medium text-foreground">{s.value}</p>
-            <p className="text-[11px] text-muted-foreground mt-0.5">{s.label}</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">
+              {s.label}
+            </p>
           </div>
         ))}
       </motion.div>

@@ -1,7 +1,9 @@
 "use client";
+
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Star, CalendarCheck } from "lucide-react";
+import HeroImage from "../../../../../public/hero-image.png";
 
 export default function BannerImage() {
   return (
@@ -9,32 +11,32 @@ export default function BannerImage() {
       initial={{ opacity: 0, scale: 0.92 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.55, delay: 0.2 }}
-      className="hidden md:flex justify-center"
+      className="hidden md:flex justify-center items-center"
     >
-      <div className="relative w-64 h-64">
+      <div className="relative w-[500px] h-[500px]">
 
-        {/* Soft circle background */}
-        <div className="w-full h-full rounded-full bg-blue-50 flex items-center justify-center overflow-visible">
-          <Image
-            src="https://illustrations.popsy.co/white/web-design.svg"
-            alt="SkillBridge tutor illustration"
-            width={240}
-            height={240}
-            className="object-contain"
-            priority
-          />
+        {/* Background Glow */}
+        <div className="absolute inset-0 rounded-full bg-primary/10 blur-3xl"></div>
+
+        {/* Hero Image */}
+        <Image
+          src={HeroImage}
+          alt="SkillBridge Hero"
+          fill
+          priority
+          className="object-contain relative z-10"
+        />
+
+        {/* Top Badge */}
+        <div className="absolute top-8 right-0 z-20 bg-background border border-border rounded-xl px-4 py-2 flex items-center gap-2 shadow-lg">
+          <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+          <span className="text-sm font-medium">Top Rated Tutor</span>
         </div>
 
-        {/* Top-right chip */}
-        <div className="absolute -top-1 -right-4 bg-background border border-border/40 rounded-lg px-2.5 py-1.5 flex items-center gap-1.5 text-xs font-medium text-foreground shadow-none">
-          <Star size={13} className="text-amber-500" />
-          Top rated
-        </div>
-
-        {/* Bottom-left chip */}
-        <div className="absolute -bottom-1 -left-4 bg-background border border-border/40 rounded-lg px-2.5 py-1.5 flex items-center gap-1.5 text-xs font-medium text-foreground">
-          <CalendarCheck size={13} className="text-teal-600" />
-          Session booked!
+        {/* Bottom Badge */}
+        <div className="absolute bottom-8 left-0 z-20 bg-background border border-border rounded-xl px-4 py-2 flex items-center gap-2 shadow-lg">
+          <CalendarCheck className="w-4 h-4 text-green-600" />
+          <span className="text-sm font-medium">500+ Sessions</span>
         </div>
 
       </div>

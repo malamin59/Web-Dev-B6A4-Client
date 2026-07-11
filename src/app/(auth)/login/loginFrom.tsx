@@ -40,6 +40,7 @@ export default function LoginFrom() {
           <Button type="submit" className="w-full mb-2">
             Login
           </Button>
+          
         </div>
         <SocialLogin />
       </form>
