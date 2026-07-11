@@ -6,6 +6,7 @@ export const handleSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
   router: AppRouterInstance,
 ) => {
+  
   e.preventDefault();
   const fromData = new FormData(e.currentTarget);
   try {

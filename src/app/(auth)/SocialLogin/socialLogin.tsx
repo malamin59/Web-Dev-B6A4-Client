@@ -9,7 +9,7 @@ export default function SocialLogin() {
       {/* Google Login */}
       {/* <GoogleLogin /> */}
       {/* GitHub Login */}
-      <GithubLogin />
+      {/* <GithubLogin /> */}
     </div>
   );
 }
