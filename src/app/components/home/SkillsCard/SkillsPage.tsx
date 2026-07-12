@@ -1,4 +1,3 @@
-// import TutorsPage from "@/app/(commonLayout)/tutors/page";
 import Tutors from "@/app/(commonLayout)/tutors/Tutors";
 
 export default function SkillsPage() {

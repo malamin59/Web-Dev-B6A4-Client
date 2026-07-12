@@ -1,16 +1,29 @@
 "use client";
 import { motion } from "framer-motion";
-import { Search, School, Users, Star, BookOpen } from "lucide-react";
+import { Search, School,  Star } from "lucide-react";
 import BannerButton from "./BannerButton";
 import Link from "next/link";
+interface BannerContentProps {
+  totalTutor: number;
+}
 
-const stats = [
-  { value: "500+", label: "Expert tutors" },
-  { value: "12k+", label: "Sessions booked" },
-  { value: "4.9 ★", label: "Average rating" },
-];
 
-export default function BannerContent() {
+
+export default function BannerContent({ totalTutor }: BannerContentProps) {
+  const stats = [
+    {
+      value: `${totalTutor}+`,
+      label: "Expert tutors",
+    },
+    {
+      value: "50+",
+      label: "Sessions booked",
+    },
+    {
+      value: "4.9 ★",
+      label: "Average rating",
+    },
+  ];
   return (
     <div>
       {/* Badge */}

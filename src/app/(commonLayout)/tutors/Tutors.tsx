@@ -4,7 +4,7 @@ import Card from "./Card";
 import TutorHeader from "./TutorHeader";
 import SearchBar from "./SearchBar";
 
-async function getTutors(search = "", rate = "") {
+ async function getTutors(search = "", rate = "") {
   const res = await axiosInstance.get("/tutor", {
     params: { search, rate },
   });
