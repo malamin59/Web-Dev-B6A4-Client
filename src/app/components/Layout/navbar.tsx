@@ -83,6 +83,10 @@ const Navbar1 = ({
       url: "/review",
     },
     {
+      title: "ai assistant",
+      url: "/ai-assistant",
+    },
+    {
       title: "Dashboard",
       url: "/dashboard",
     },

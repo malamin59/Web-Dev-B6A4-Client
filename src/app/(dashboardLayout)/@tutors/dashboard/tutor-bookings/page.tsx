@@ -7,7 +7,7 @@ import EmptyPage from "@/app/(dashboardLayout)/EmptyPage";
 
 export default function TutorBookingsPage() {
   const { id } = useUserRole();
-  console.log(id);
+  // console.log(id);
   const { data: bookings } = useQuery({
     queryKey: ["tutor-bookings", id],
     queryFn: async () => {
@@ -17,7 +17,7 @@ export default function TutorBookingsPage() {
 
     enabled: !!id,
   });
-  console.log("data is here", bookings);
+  // console.log("data is here", bookings);
   if ( !bookings ||  bookings.length === 0) {
     return <EmptyPage />;
   }

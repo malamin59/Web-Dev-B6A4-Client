@@ -36,7 +36,7 @@ export default async function Tutors({
       {showSearch && <SearchBar />}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {tutors.map((tutor: any) => (
+        {tutors.map((tutor: Tutor) => (
           <Card key={tutor.id} tutor={tutor} />
         ))}
       </div>

@@ -19,7 +19,7 @@ export default function BookingPage() {
     queryFn: async () => {
       const res = await axiosInstance.get(`/bookings/student/${id}`);
 
-      console.log(res.data);
+      // console.log(res.data);
       return res.data.data;
     },
     enabled: !!id,

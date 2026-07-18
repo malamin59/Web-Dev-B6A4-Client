@@ -59,7 +59,7 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     async jwt({ token, account, user }) {
-      console.log(token, account, user);
+      // console.log(token, account, user);
       if (account) {
         token.provider = account.provider;
 
@@ -107,7 +107,7 @@ export const authOptions: NextAuthOptions = {
     },
 
     async session({ session, token }) {
-      console.log("session token sand session", token, session);
+      // console.log("session token sand session", token, session);
       if (session.user) {
         session.user.id = token.id;
         session.user.provider = token.provider;

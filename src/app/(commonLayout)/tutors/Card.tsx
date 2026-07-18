@@ -1,8 +1,12 @@
 import { ArrowRight, BookOpen, Coins } from 'lucide-react'
 import Link from 'next/link'
-import React from 'react'
 
-export default function Card({tutor}) {
+
+interface CardProps {
+  tutor: Tutor;
+}
+
+export default function Card({tutor} : CardProps) {
   return (
      <div
             key={tutor.id}
