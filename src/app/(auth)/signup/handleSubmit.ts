@@ -8,8 +8,11 @@ export const handleSubmit = async (
   router: AppRouterInstance,
   otpSent: boolean,
   setOtpSent: Dispatch<SetStateAction<boolean>>,
+  setIsLoading: Dispatch<SetStateAction<boolean>>,
 ) => {
   e.preventDefault();
+
+  setIsLoading(true);
 
   const formData = new FormData(e.currentTarget);
   const data = Object.fromEntries(formData);
@@ -90,5 +93,7 @@ export const handleSubmit = async (
     } else {
       toast.error("Something went wrong");
     }
+  } finally {
+    setIsLoading(false);
   }
 };
