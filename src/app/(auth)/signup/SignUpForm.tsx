@@ -4,14 +4,16 @@ import { Label } from "@/components/ui/label";
 import { handleSubmit } from "./handleSubmit";
 import SocialLogin from "../SocialLogin/socialLogin";
 import { useLoginRouter } from "@/hooks/login.router";
+import { useState } from "react";
 export default function SignUpForm() {
-
-  const router = useLoginRouter()
+  const [otpSent, setOtpSent] = useState(false);
+  const [otp, setOtp] = useState("");
+  const router = useLoginRouter();
 
   return (
     <div>
       {" "}
-      <form onSubmit={(e) => handleSubmit(e, router)}>
+      <form onSubmit={(e) => handleSubmit(e, router, otpSent, setOtpSent)}>
         <div className="flex flex-col gap-6">
           {/* Name */}
           <div className="grid gap-2">
@@ -36,8 +38,23 @@ export default function SignUpForm() {
             <Label htmlFor="password">Password</Label>
             <Input id="password" name="password" type="password" required />
           </div>
-
-            {/* Role */}
+          {otpSent && (
+            <div className="grid gap-2">
+              <Label htmlFor="otp">Email Verification OTP</Label>
+              <Input
+                id="otp"
+                name="otp"
+                type="text"
+                inputMode="numeric"
+                maxLength={6}
+                placeholder="Enter 6-digit OTP"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                required
+              />
+            </div>
+          )}
+          {/* Role */}
           <div className="grid gap-2">
             <Label htmlFor="role">Role</Label>
 
@@ -55,7 +72,7 @@ export default function SignUpForm() {
 
           {/* SignUp Button */}
           <Button type="submit" className="w-full mb-2">
-            Login
+            {otpSent ? "Verify & Register" : "Register"}
           </Button>
         </div>
         {/* Social Login */}
