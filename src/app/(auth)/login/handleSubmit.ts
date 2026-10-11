@@ -6,7 +6,6 @@ export const handleSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
   router: AppRouterInstance,
 ) => {
-  
   e.preventDefault();
   const fromData = new FormData(e.currentTarget);
   try {
@@ -15,14 +14,15 @@ export const handleSubmit = async (
     const res = await signIn("credentials", {
       email: fromData.get("email"),
       password: fromData.get("password"),
-      redirect: true,
-      callbackUrl : "/dashboard"
+      redirect: false,
+      callbackUrl: "/dashboard",
     });
     if (res?.error) {
-      alert(res.error);
+      toast.error("Invalid email or password");
+      return;
     } else {
-      toast.success('login Successfully')
-      // router.push("/");
+      toast.success("login Successfully");
+      router.push("/dashboard");
     }
   } catch (error) {
     console.error(error);
